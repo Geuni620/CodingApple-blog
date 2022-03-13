@@ -28,7 +28,8 @@ function App() {
     글제목변경(newArray);
   }
 
-  function 함수() {}
+  // 글제목 번호 입력
+  let [번호, 번호수정] = useState(0);
 
   // 클릭 모달창 이벤트 구현
   let [modal, modal변경] = useState(false);
@@ -49,7 +50,11 @@ function App() {
       {글제목.map((글, i) => {
         return (
           <div className="list">
-            <h3>
+            <h3
+              onClick={() => {
+                번호수정(i);
+              }}
+            >
               {" "}
               {글} ❤️{" "}
               <span
@@ -69,16 +74,16 @@ function App() {
         );
       })}
 
-      {modal === true ? <Modal /> : null}
+      {modal === true ? <Modal 글제목={글제목} 번호={번호} /> : null}
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
     <>
       <div className="modal">
-        <h2>제목</h2>
+        <h2>{props.글제목[props.번호]}</h2>
         <p>날짜</p>
         <p>상태내용</p>
       </div>
