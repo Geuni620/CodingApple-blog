@@ -34,6 +34,9 @@ function App() {
   // 클릭 모달창 이벤트 구현
   let [modal, modal변경] = useState(false);
 
+  // 입력값 생성
+  let [입력값, 입력값변경] = useState("");
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -73,6 +76,30 @@ function App() {
           </div>
         );
       })}
+
+      {/* input 데이터를 state로 저장해보기 */}
+      {/* <input
+        onChange={(e) => {
+          입력값변경(e.target.value);
+        }}
+      ></input> */}
+
+      <div className="publish">
+        <input
+          onChange={(e) => {
+            입력값변경(e.target.value);
+          }}
+        ></input>
+        <button
+          onClick={() => {
+            let copy = [...글제목];
+            copy.push(입력값);
+            글제목변경(copy);
+          }}
+        >
+          저장
+        </button>
+      </div>
 
       {modal === true ? <Modal 글제목={글제목} 번호={번호} /> : null}
     </div>
